@@ -1,0 +1,40 @@
+[project]
+name = "om3utils"
+description = "TODO"
+keywords = ["COSIMA", "access-om3", "ocean modeling"]
+authors = [
+  {name = "Micael Oliveira"},
+]
+dynamic = ["version"]
+dependencies = []
+
+[build-system]
+requires = ["setuptools", "setuptools_scm[toml]"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["om3utils"]
+
+[tool.setuptools_scm]
+write_to = "om3utils/_version.py"
+
+
+[project.optional-dependencies]
+devel = [
+    "flake8",
+    "black",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+addopts = ["--cov=om3utils", "--cov-report=term", "--cov-report=xml"]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+max-line-length = 120
