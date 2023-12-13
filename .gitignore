@@ -4,6 +4,7 @@
 /dist
 _version.py
 .coverage
+coverage.xml
 *.egg-info
 .ipynb_checkpoints
 .vscode
