@@ -6,7 +6,9 @@ authors = [
   {name = "Micael Oliveira"},
 ]
 dynamic = ["version"]
-dependencies = []
+dependencies = [
+    "ruamel.yaml",
+]
 
 [build-system]
 requires = ["setuptools", "setuptools_scm[toml]"]
