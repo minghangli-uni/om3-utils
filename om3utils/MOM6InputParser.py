@@ -18,9 +18,7 @@ class MOM6InputParser(object):
         self.current_var = None
         self.current_value = []
         self.current_comment = []
-        self.block_pattern = re.compile(
-            r"|".join(re.escape(i) for i in self.block_list)
-        )
+        self.block_pattern = re.compile(r"|".join(re.escape(i) for i in self.block_list))
 
     def read_input(self, MOM_input_read_path):
         with open(MOM_input_read_path, "r") as f:
@@ -67,9 +65,7 @@ class MOM6InputParser(object):
         param = param.strip()
         # separate value and inline comment
         tmp_value = value.split("!")[0].strip()  # value
-        tmp_commt = (
-            value.split("!")[1].strip() if "!" in value else ""
-        )  # inline comment
+        tmp_commt = value.split("!")[1].strip() if "!" in value else ""  # inline comment
         self.current_var = param
         self.current_value = [tmp_value]
         self.current_comment = [tmp_commt]
@@ -89,22 +85,16 @@ class MOM6InputParser(object):
         """
         with open(MOM_input_write_path, "w") as f:
             f.write("! This file was written by the script xxx \n")
-            f.write(
-                "! and records the non-default parameters used at run-time.\n"
-            )
+            f.write("! and records the non-default parameters used at run-time.\n")
             f.write("\n")
             for var, value in self.param_dict.items():
                 comment = self.commt_dict.get(var, "")
                 if comment:
                     comment_lines = comment.split("\n")
                     param_str = f"{var} = {value}"
-                    f.write(
-                        f"{param_str:<{total_width}} ! {comment_lines[0].strip()}\n"
-                    )
+                    f.write(f"{param_str:<{total_width}} ! {comment_lines[0].strip()}\n")
                     for comment_line in comment_lines[1:]:
-                        f.write(
-                            f"{'':<{total_width}} {comment_line.strip()}\n"
-                        )
+                        f.write(f"{'':<{total_width}} {comment_line.strip()}\n")
                 elif var in self.block_list:
                     f.write(f"{var}\n")
                 else:
